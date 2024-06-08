@@ -1,0 +1,233 @@
+{
+  "project": {
+    "id": "7xmv8s",
+    "name": "240608_modulab",
+    "creationTs": 1717812910639,
+    "lastModifiedTs": 1717813830381,
+    "userSetData": {
+      "description": "",
+      "tags": [],
+      "contactURL": "",
+      "tutorialYouTube": ""
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "object_detection_s4eytz",
+        "nodeSpecId": "object_detection",
+        "customData": {
+          "previewX": 928,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 112,
+          "posY": 336,
+          "width": 176,
+          "height": 130,
+          "selected": false
+        },
+        "propValues": {
+          "score": 0.5,
+          "boxesCount": 20
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "live_camera_vn5b4c",
+              "outputId": "image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "image_mixer_46i2jv",
+        "nodeSpecId": "image_mixer",
+        "customData": {
+          "rightOfNode": "bounding_box_to_image_4pkeq9",
+          "previewX": 16,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 1088,
+          "posY": 256,
+          "width": 224,
+          "height": 254,
+          "selected": false
+        },
+        "propValues": {
+          "mode": "source-over",
+          "hidePreview": false
+        },
+        "inputValues": {
+          "topText": "",
+          "midText": "",
+          "bottomText": ""
+        },
+        "incomingEdges": {
+          "image1": [
+            {
+              "sourceNodeId": "mask_visualizer_j3rau7",
+              "outputId": "maskedImage"
+            }
+          ],
+          "image2": [
+            {
+              "sourceNodeId": "bounding_box_visualizer_9zn6ug",
+              "outputId": "image"
+            }
+          ],
+          "topText": [
+            {
+              "sourceNodeId": "speech_to_text_stream_jkf1wv",
+              "outputId": "text"
+            }
+          ]
+        }
+      },
+      {
+        "id": "body_segmentation_w6jtqb",
+        "nodeSpecId": "body_segmentation",
+        "customData": {
+          "rightOfNode": "live_camera_vn5b4c",
+          "previewX": 16,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 304,
+          "posY": 224,
+          "width": 181.29345703125,
+          "height": 105,
+          "selected": false
+        },
+        "propValues": {
+          "modelOption": "MediaPipeSelfieSegmentation"
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "live_camera_vn5b4c",
+              "outputId": "image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mask_visualizer_j3rau7",
+        "nodeSpecId": "mask_visualizer",
+        "customData": {
+          "rightOfNode": "body_segmentation_w6jtqb",
+          "previewX": 272,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 560,
+          "posY": 96,
+          "width": 176,
+          "height": 179,
+          "selected": false
+        },
+        "propValues": {
+          "mode": "fg-image",
+          "hidePreview": true
+        },
+        "inputValues": {
+          "color": "#22e8dd"
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "live_camera_vn5b4c",
+              "outputId": "image"
+            }
+          ],
+          "segmentationResult": [
+            {
+              "sourceNodeId": "body_segmentation_w6jtqb",
+              "outputId": "segmentationResult"
+            }
+          ]
+        }
+      },
+      {
+        "id": "bounding_box_visualizer_9zn6ug",
+        "nodeSpecId": "bounding_box_visualizer",
+        "customData": {
+          "previewX": 352,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 544,
+          "posY": 352,
+          "width": 230,
+          "height": 180,
+          "selected": false
+        },
+        "propValues": {
+          "keypointScale": 0.7857142857142857,
+          "color": "#08f7fe",
+          "hidePreview": true
+        },
+        "incomingEdges": {
+          "boundingBoxResult": [
+            {
+              "sourceNodeId": "object_detection_s4eytz",
+              "outputId": "objectDetectionResult"
+            }
+          ]
+        }
+      },
+      {
+        "id": "live_camera_vn5b4c",
+        "nodeSpecId": "live_camera",
+        "customData": {
+          "runContinuously": true,
+          "initialWidth": 240,
+          "initialHeight": 320,
+          "previewX": 16,
+          "previewY": 16,
+          "previewWidth": 240,
+          "previewHeight": 320
+        },
+        "uiData": {
+          "posX": -96,
+          "posY": 160,
+          "width": 176,
+          "height": 105,
+          "selected": false
+        },
+        "propValues": {
+          "hidePreview": true
+        }
+      },
+      {
+        "id": "speech_to_text_stream_jkf1wv",
+        "nodeSpecId": "speech_to_text_stream",
+        "customData": {
+          "previewX": 352,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 132.7998046875,
+          "posY": 87.09224700927734,
+          "width": 196.45166015625,
+          "height": 68,
+          "selected": false
+        }
+      }
+    ]
+  },
+  "customNodeUrls": []
+}
