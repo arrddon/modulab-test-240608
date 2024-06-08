@@ -1,0 +1,104 @@
+{
+  "project": {
+    "id": "iatirc",
+    "name": "240608_modulab",
+    "creationTs": 1717812910639,
+    "lastModifiedTs": 1717813272066,
+    "userSetData": {
+      "description": "",
+      "tags": [],
+      "contactURL": "",
+      "tutorialYouTube": ""
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "live_camera_vn5b4c",
+        "nodeSpecId": "live_camera",
+        "customData": {
+          "runContinuously": true,
+          "initialWidth": 240,
+          "initialHeight": 320,
+          "previewX": 16,
+          "previewY": 16,
+          "previewWidth": 240,
+          "previewHeight": 320
+        },
+        "uiData": {
+          "posX": 176,
+          "posY": 133.5999755859375,
+          "width": 176,
+          "height": 105,
+          "selected": false
+        },
+        "propValues": {
+          "hidePreview": false
+        }
+      },
+      {
+        "id": "face_detection_ou6m1e",
+        "nodeSpecId": "face_detection",
+        "customData": {
+          "rightOfNode": "live_camera_vn5b4c",
+          "previewX": 592,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 432,
+          "posY": 240,
+          "width": 176,
+          "height": 92,
+          "selected": false
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "live_camera_vn5b4c",
+              "outputId": "image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "bounding_box_to_image_4pkeq9",
+        "nodeSpecId": "bounding_box_to_image",
+        "customData": {
+          "rightOfNode": "face_detection_ou6m1e",
+          "previewX": 592,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 720,
+          "posY": 128,
+          "width": 230,
+          "height": 155,
+          "selected": false
+        },
+        "propValues": {
+          "mode": "only-cropped",
+          "hidePreview": false
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "live_camera_vn5b4c",
+              "outputId": "image"
+            }
+          ],
+          "boundingBoxes": [
+            {
+              "sourceNodeId": "face_detection_ou6m1e",
+              "outputId": "boundingBoxes"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "customNodeUrls": []
+}
